@@ -1,0 +1,339 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.game-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#start-screen {
+    width: 100%;
+    height: 100%;
+    background: url('assets/splash.jpg') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 15vh;
+    position: relative;
+}
+
+.neon-button {
+    font-size: 2rem;
+    padding: 1rem 3rem;
+    border: 4px solid #fff;
+    border-radius: 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px rgba(255,255,255,0.8);
+    box-shadow: 
+        0 0 10px rgba(255,255,255,0.5),
+        0 0 20px rgba(255,255,255,0.3),
+        0 0 30px rgba(255,255,255,0.2);
+}
+
+.neon-button:hover {
+    background: rgba(255,255,255,0.1);
+    box-shadow: 
+        0 0 20px rgba(255,255,255,0.6),
+        0 0 40px rgba(255,255,255,0.4),
+        0 0 60px rgba(255,255,255,0.3);
+    text-shadow: 0 0 15px rgba(255,255,255,1);
+    transform: scale(1.05);
+}
+
+#game-screen {
+    background: url('assets/bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
+button {
+    padding: 0.8rem 2rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.game-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+}
+
+.game-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+}
+
+.stat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    min-width: 120px;
+}
+
+.stat-container span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.stat-container .value-highlight {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+#score {
+    color: #4CAF50;
+}
+
+#timer {
+    color: #2196F3;
+}
+
+#next-change {
+    color: #ff6b6b;
+    font-family: monospace;
+}
+
+.target-color-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.target-color-container span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+#target-color {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.score, .timer, .next-change {
+    font-size: 1.1rem;
+    padding: 0.3rem 0.8rem;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.timer {
+    position: relative;
+}
+
+.time-bonus {
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4CAF50;
+    font-weight: bold;
+    animation: slideUp 1s ease-out forwards;
+}
+
+.score-penalty, .time-penalty {
+    position: absolute;
+    color: #ff0000;
+    font-weight: bold;
+    animation: penaltyFade 0.8s ease-out forwards;
+}
+
+.time-penalty {
+    color: #ff4444;
+    font-size: 1.2em;
+}
+
+@keyframes slideUp {
+    0% {
+        opacity: 1;
+        transform: translate(0, -50%);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(0, -150%);
+    }
+}
+
+@keyframes penaltyFade {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(0, -20px);
+    }
+}
+
+.next-change {
+    color: #ff6b6b;
+}
+
+.value-highlight {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.timer .value-highlight {
+    color: #2196F3;
+}
+
+.next-change .value-highlight {
+    color: #ff6b6b;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+}
+
+.color-box {
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.color-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    color: #333;
+}
+
+#final-score {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+#end-screen {
+    width: 100%;
+    height: 100%;
+    background: url('assets/finish.jpg') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 15vh;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+#end-screen h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+#end-screen p {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.score-gain {
+    position: absolute;
+    color: #4CAF50;
+    font-weight: bold;
+    font-size: 1.2em;
+    animation: gainFade 0.8s ease-out forwards;
+}
+
+@keyframes gainFade {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(0, -20px);
+    }
+}

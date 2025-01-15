@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renk Yakalama Oyunu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div id="start-screen" class="screen">
+            <button id="start-button" class="neon-button">BAŞLA</button>
+        </div>
+
+        <div id="game-screen" class="screen hidden">
+            <div class="game-info">
+                <div class="target-color-container">
+                    <span>Hedef Renk</span>
+                    <div id="target-color"></div>
+                </div>
+                <div class="game-stats">
+                    <div class="stat-container">
+                        <span>Puan</span>
+                        <div class="value-highlight" id="score">0</div>
+                    </div>
+                    <div class="stat-container">
+                        <span>Süre</span>
+                        <div class="value-highlight" id="timer">60</div>
+                    </div>
+                    <div class="stat-container">
+                        <span>Yeni Renk</span>
+                        <div class="value-highlight" id="next-change">3.0</div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-container" id="grid"></div>
+        </div>
+
+        <div id="end-screen" class="screen hidden">
+            <h2>Oyun Bitti!</h2>
+            <p>Toplam Puan: <span id="final-score">0</span></p>
+            <button id="play-again" class="neon-button">Yeniden Oyna</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
