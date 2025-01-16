@@ -200,53 +200,76 @@ class ColorGame {
 
     showScoreGain(amount) {
         const scoreElement = document.getElementById('score');
-        const gain = document.createElement('div');
-        gain.className = 'score-gain';
-        gain.textContent = `+${amount}`;
+        const animation = document.createElement('div');
+        animation.className = 'score-animation score-gain';
+        animation.textContent = `+${amount}`;
         
         const rect = scoreElement.getBoundingClientRect();
-        gain.style.left = `${rect.right + 10}px`;
-        gain.style.top = `${rect.top}px`;
+        animation.style.left = `${rect.right + 10}px`;
+        animation.style.top = `${rect.top}px`;
         
-        document.body.appendChild(gain);
+        document.body.appendChild(animation);
         
         setTimeout(() => {
-            gain.remove();
+            animation.remove();
         }, 800);
     }
 
     showScorePenalty(amount) {
         const scoreElement = document.getElementById('score');
-        const penalty = document.createElement('div');
-        penalty.className = 'score-penalty';
-        penalty.textContent = `-${amount}`;
+        const animation = document.createElement('div');
+        animation.className = 'score-animation score-penalty';
+        animation.textContent = `-${amount}`;
         
         const rect = scoreElement.getBoundingClientRect();
-        penalty.style.left = `${rect.right + 10}px`;
-        penalty.style.top = `${rect.top}px`;
+        animation.style.left = `${rect.right + 10}px`;
+        animation.style.top = `${rect.top}px`;
         
-        document.body.appendChild(penalty);
+        document.body.appendChild(animation);
         
         setTimeout(() => {
-            penalty.remove();
+            animation.remove();
+        }, 800);
+    }
+
+    showTimeBonus(amount) {
+        const timerElement = document.getElementById('timer');
+        const animation = document.createElement('div');
+        animation.className = 'time-animation time-bonus';
+        animation.textContent = `+${amount}s`;
+        
+        const rect = timerElement.getBoundingClientRect();
+        animation.style.left = `${rect.right + 10}px`;
+        animation.style.top = `${rect.top}px`;
+        
+        document.body.appendChild(animation);
+        
+        setTimeout(() => {
+            animation.remove();
         }, 800);
     }
 
     showTimePenalty(amount) {
         const timerElement = document.getElementById('timer');
-        const penalty = document.createElement('div');
-        penalty.className = 'time-penalty';
-        penalty.textContent = `-${amount}s`;
+        const animation = document.createElement('div');
+        animation.className = 'time-animation time-penalty';
+        animation.textContent = `-${amount}s`;
         
         const rect = timerElement.getBoundingClientRect();
-        penalty.style.left = `${rect.right + 10}px`;
-        penalty.style.top = `${rect.top}px`;
+        animation.style.left = `${rect.right + 10}px`;
+        animation.style.top = `${rect.top}px`;
         
-        document.body.appendChild(penalty);
+        document.body.appendChild(animation);
         
         setTimeout(() => {
-            penalty.remove();
+            animation.remove();
         }, 800);
+    }
+
+    addTimeBonus() {
+        this.timeLeft = Math.min(60, this.timeLeft + this.timeBonus);
+        this.showTimeBonus(this.timeBonus);
+        this.updateTimer();
     }
 
     startGameLoop() {
@@ -277,24 +300,6 @@ class ColorGame {
                 }
             }
         }, 50);
-    }
-
-    addTimeBonus() {
-        const timerElement = document.getElementById('timer');
-        const bonusElement = document.createElement('div');
-        bonusElement.className = 'time-bonus';
-        bonusElement.textContent = `+${this.timeBonus}s`;
-        
-        timerElement.parentElement.appendChild(bonusElement);
-        
-        // Süreyi artır
-        this.timeLeft += this.timeBonus;
-        this.updateTimer();
-
-        // Animasyon bitince elementi kaldır
-        setTimeout(() => {
-            bonusElement.remove();
-        }, 1000);
     }
 
     updateScore() {

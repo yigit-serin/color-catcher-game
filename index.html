@@ -7,13 +7,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="game-container">
+    <div class="container">
         <div id="start-screen" class="screen">
-            <button id="start-button" class="neon-button">BAŞLA</button>
+            <button id="start-button" class="neon-button">OYNA</button>
         </div>
 
         <div id="game-screen" class="screen hidden">
-            <div class="game-info">
+            <div class="game-header">
                 <div class="target-color-container">
                     <span>Hedef Renk</span>
                     <div id="target-color"></div>
@@ -37,9 +37,11 @@
         </div>
 
         <div id="end-screen" class="screen hidden">
-            <h2>Oyun Bitti!</h2>
-            <p>Toplam Puan: <span id="final-score">0</span></p>
-            <button id="play-again" class="neon-button">Yeniden Oyna</button>
+            <div class="end-content">
+                <h2>Oyun Bitti!</h2>
+                <p>Toplam Puan: <span id="final-score">0</span></p>
+                <button id="play-again" class="neon-button">Tekrar Oyna</button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
